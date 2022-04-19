@@ -1,7 +1,7 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 from design import *
-import horserace as hr
+#import horserace as hr
 
 class PageContainer(tk.Tk):
     #multipage tutorial link: https://medium.com/analytics-vidhya/gui-for-your-python-program-with-multiple-windows-options-78c2ea8d259d
@@ -70,8 +70,9 @@ class HorseRacePage(tk.Frame):
         tk.Frame.__init__(self, parent)
         button_back = tk.Button(self, text= "<-", command=lambda: controller.show_frame(StartPage))
         button_back.pack(side=tk.TOP, anchor=tk.NW)
-        button_start = tk.Button(self, text= "Start", command=hr.Horserace)
+        button_start = tk.Button(self, text= "Start", command=lambda: hr.runmain)
         button_start.pack(side=tk.TOP)
+
 
 class BjGamePage(tk.Frame):
     """BlackJack game page"""
@@ -125,8 +126,8 @@ class BjGamePage(tk.Frame):
         player_game_options_frame.pack(**pack_left_and_fill_y)
     
 
-        hit     = tk.Button(player_game_options_frame, text = 'HIT', bg = '#FF3300', **button_args, state = DISABLED, name = 'hit')
-        stand   = tk.Button(player_game_options_frame, text = 'STAND', bg = '#B5BD18', **button_args, state = DISABLED, name = 'stand')
+        hit = tk.Button(player_game_options_frame, text = 'HIT', bg = '#FF3300', **button_args, state = DISABLED, name = 'hit')
+        stand = tk.Button(player_game_options_frame, text = 'STAND', bg = '#B5BD18', **button_args, state = DISABLED, name = 'stand')
 
         hit.pack(side = TOP, fill = X)
         stand.pack(side = TOP, fill = X)
