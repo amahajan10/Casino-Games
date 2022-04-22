@@ -1,16 +1,17 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 from design import *
-#import horserace as hr
+import subprocess
+import sys 
+
 
 class PageContainer(tk.Tk):
     #multipage tutorial link: https://medium.com/analytics-vidhya/gui-for-your-python-program-with-multiple-windows-options-78c2ea8d259d
     """"Handles page switching"""
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
-        #tk.Tk.iconbitmap(self,default="logo.png")
 
-        container = tk.Frame(self)
+        container = tk.Frame(self, bg="black")
         tk.Tk.geometry(self, '848x480')
         container.pack(side='top', fill='both', expand=True)
         container.rowconfigure(0, weight=1)
@@ -46,9 +47,9 @@ class HomePage(tk.Frame):
         image_tile.image = myimage
         #image_tile.grid(row=3, column=3)
         image_tile.pack(side=TOP)
-        nametag = tk.Text(self, height=1, width=30, font=font_small) 
-        #nametag.grid(row=4, column=3)
-        nametag.pack(side=TOP)   
+        # nametag = tk.Text(self, height=1, width=30, font=font_small) 
+        # #nametag.grid(row=4, column=3)
+        # nametag.pack(side=TOP)   
         play_button = tk.Button(self, text="Play", command=lambda: controller.show_frame(StartPage), font=font_small)
         #play_button.grid(row=5, column=3)
         play_button.pack(side=TOP)
@@ -70,8 +71,10 @@ class HorseRacePage(tk.Frame):
         tk.Frame.__init__(self, parent)
         button_back = tk.Button(self, text= "<-", command=lambda: controller.show_frame(StartPage))
         button_back.pack(side=tk.TOP, anchor=tk.NW)
-        button_start = tk.Button(self, text= "Start", command=lambda: hr.runmain)
+
+        button_start = tk.Button(self, text= "Start", command=lambda: subprocess.Popen([sys.executable, "horserace.py"]))
         button_start.pack(side=tk.TOP)
+        
 
 
 class BjGamePage(tk.Frame):
